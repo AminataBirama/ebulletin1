@@ -1,0 +1,392 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+
+      <ion-menu-button></ion-menu-button>
+
+    </ion-buttons>
+
+    <ion-title>
+
+      Gestion des Bulletins
+
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- =======================================
+       FILTRE
+       ======================================= -->
+
+  <ion-card>
+
+    <ion-card-header>
+
+      <ion-card-title>
+
+        Générer un bulletin
+
+      </ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Élève -->
+
+      <ion-item>
+
+        <ion-label position="stacked">
+
+          Élève
+
+        </ion-label>
+
+        <ion-select [(ngModel)]="selectedStudent">
+
+          @for(student of students; track student.id){
+
+          <ion-select-option [value]="student.id">
+
+            {{student.nom}}
+
+            {{student.prenom}}
+
+          </ion-select-option>
+
+          }
+
+        </ion-select>
+
+      </ion-item>
+
+      <!-- Période -->
+
+      <ion-item>
+
+        <ion-label position="stacked">
+
+          Période
+
+        </ion-label>
+
+        <ion-select [(ngModel)]="selectedPeriode">
+
+          @for(p of periodes; track p){
+
+          <ion-select-option [value]="p">
+
+            {{p}}
+
+          </ion-select-option>
+
+          }
+
+        </ion-select>
+
+      </ion-item>
+
+      <br>
+
+      <ion-button expand="block" (click)="generateReportCard()">
+
+        Générer le bulletin
+
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" color="medium" (click)="clearReportCard()">
+
+        Réinitialiser
+
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- =======================================
+       BULLETIN
+       ======================================= -->
+
+  @if(reportCard){
+
+  <ion-card>
+
+    <ion-card-header>
+
+      <ion-card-title>
+
+        Bulletin scolaire
+
+      </ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-grid>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>Élève :</strong>
+
+            {{reportCard.student}}
+
+          </ion-col>
+
+          <ion-col>
+
+            <strong>Matricule :</strong>
+
+            {{reportCard.matricule}}
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>Classe :</strong>
+
+            {{reportCard.classe}}
+
+          </ion-col>
+
+          <ion-col>
+
+            <strong>Période :</strong>
+
+            {{reportCard.periode}}
+
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+
+      <br>
+      <!-- ==========================
+           TABLEAU DES NOTES
+           ========================== -->
+
+      <ion-list>
+
+        @for(line of reportCard.lines; track line.code){
+
+        <ion-item>
+
+          <ion-label>
+
+            <h2>
+
+              {{line.subject}}
+
+            </h2>
+
+            <p>
+
+              Code : {{line.code}}
+
+            </p>
+
+            <p>
+
+              Coefficient :
+
+              {{line.coefficient}}
+
+            </p>
+
+            <p>
+
+              Note :
+
+              <strong>
+
+                {{line.note}} /20
+
+              </strong>
+
+            </p>
+
+            <p>
+
+              Points :
+
+              {{line.noteCoeff}}
+
+            </p>
+
+            <p>
+
+              Appréciation :
+
+              {{line.appreciation}}
+
+            </p>
+
+          </ion-label>
+
+        </ion-item>
+
+        }
+
+      </ion-list>
+
+      <hr>
+
+      <ion-grid>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>
+
+              Total Coefficients
+
+            </strong>
+
+          </ion-col>
+
+          <ion-col>
+
+            {{reportCard.totalCoefficient}}
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>
+
+              Total Points
+
+            </strong>
+
+          </ion-col>
+
+          <ion-col>
+
+            {{reportCard.totalPoints}}
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>
+
+              Moyenne
+
+            </strong>
+
+          </ion-col>
+
+          <ion-col>
+
+            {{reportCard.moyenne}} /20
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>
+
+              Mention
+
+            </strong>
+
+          </ion-col>
+
+          <ion-col>
+
+            {{reportCard.mention}}
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>
+
+              Décision
+
+            </strong>
+
+          </ion-col>
+
+          <ion-col>
+
+            {{reportCard.decision}}
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+
+          <ion-col>
+
+            <strong>
+
+              Rang
+
+            </strong>
+
+          </ion-col>
+
+          <ion-col>
+
+            {{reportCard.rang}}
+
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+
+      <br>
+
+      <ion-button expand="block" color="success" (click)="printReportCard()">
+
+        Imprimer
+
+      </ion-button>
+
+      <ion-button expand="block" color="tertiary" (click)="downloadPdf()">
+
+        Export PDF
+
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  }
+
+</ion-content>

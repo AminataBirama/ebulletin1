@@ -1,0 +1,179 @@
+
+/* ==========================================================
+   PAGE : GESTION DES NOTES
+   ========================================================== */
+
+/* ---------- Barre de recherche ---------- */
+
+ion-searchbar {
+
+  margin-bottom: 18px;
+
+}
+
+/* ---------- Titre ---------- */
+
+h2 {
+
+  margin: 10px 0 20px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: var(--ion-color-primary);
+
+}
+
+/* ---------- Cartes ---------- */
+
+ion-card {
+
+  margin-bottom: 16px;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+
+  transition: .25s ease;
+
+}
+
+ion-card:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .12);
+
+}
+
+/* ---------- En-tête de la carte ---------- */
+
+ion-card-header {
+
+  background: #f8f9fa;
+
+}
+
+ion-card-title {
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  color: var(--ion-color-dark);
+
+}
+
+ion-card-subtitle {
+
+  color: var(--ion-color-medium);
+
+  font-size: 14px;
+
+}
+
+/* ---------- Contenu ---------- */
+
+ion-card-content p {
+
+  margin: 10px 0;
+
+  font-size: 15px;
+
+  color: #555;
+
+}
+
+/* ---------- Badge ---------- */
+
+ion-badge {
+
+  font-size: 15px;
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+}
+
+/* ---------- Boutons Modifier / Supprimer ---------- */
+
+.actions {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+}
+
+/* ---------- Formulaire ---------- */
+
+ion-input,
+ion-select {
+
+  margin-bottom: 18px;
+
+}
+
+/* ---------- Modal ---------- */
+
+ion-modal ion-toolbar {
+
+  --background: var(--ion-color-primary);
+
+  --color: white;
+
+}
+
+/* ---------- Bouton flottant ---------- */
+
+ion-fab-button {
+
+  --background: var(--ion-color-primary);
+
+  --color: white;
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
+
+}
+
+/* ---------- Carte vide ---------- */
+
+ion-card-content {
+
+  text-align: center;
+
+  font-size: 16px;
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+
+  ion-card {
+
+    margin-bottom: 12px;
+
+  }
+
+  ion-card-title {
+
+    font-size: 16px;
+
+  }
+
+  ion-card-content p {
+
+    font-size: 14px;
+
+  }
+
+}

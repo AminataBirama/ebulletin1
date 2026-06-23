@@ -1,0 +1,70 @@
+ion-searchbar {
+
+  margin-bottom: 15px;
+
+}
+
+ion-item {
+
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+
+  --background: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
+}
+
+ion-label h2 {
+
+  font-weight: bold;
+
+  font-size: 18px;
+
+}
+
+ion-label p {
+
+  color: #666;
+
+  margin: 4px 0;
+
+}
+
+ion-button {
+
+  margin-left: 6px;
+
+}
+
+ion-modal ion-content {
+
+  --padding-top: 20px;
+
+  --padding-start: 20px;
+
+  --padding-end: 20px;
+
+}
+
+ion-input,
+ion-select {
+
+  margin-bottom: 18px;
+
+}
+
+ion-toolbar {
+
+  --background: #1976d2;
+
+  --color: white;
+
+}
+
+ion-title {
+
+  font-weight: bold;
+
+}

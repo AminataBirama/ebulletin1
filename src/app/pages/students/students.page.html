@@ -1,0 +1,237 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Gestion des Élèves
+    </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button (click)="openAdd()">
+
+        <ion-icon
+          slot="icon-only"
+          name="add-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Barre de recherche -->
+
+  <ion-searchbar
+
+    placeholder="Rechercher un élève"
+
+    (ionInput)="onSearch($event)">
+
+  </ion-searchbar>
+
+  <!-- Liste -->
+
+  <ion-list>
+
+    @for(student of filteredStudents; track student.id){
+
+      <ion-item>
+
+        <ion-label>
+
+          <h2>
+
+            {{ student.nom }} {{ student.prenom }}
+
+          </h2>
+
+          <p>
+
+            Matricule : {{ student.matricule }}
+
+          </p>
+
+          <p>
+
+            Classe : {{ student.classe }}
+
+          </p>
+
+          <p>
+
+            Date de naissance :
+            {{ student.dateNaissance }}
+
+          </p>
+
+        </ion-label>
+
+        <!-- Modifier -->
+
+        <ion-button
+
+          fill="clear"
+
+          color="warning"
+
+          (click)="openEdit(student)">
+
+          <ion-icon
+
+            name="create-outline">
+
+          </ion-icon>
+
+        </ion-button>
+
+        <!-- Supprimer -->
+
+        <ion-button
+
+          fill="clear"
+
+          color="danger"
+
+          (click)="confirmDelete(student)">
+
+          <ion-icon
+
+            name="trash-outline">
+
+          </ion-icon>
+
+        </ion-button>
+
+      </ion-item>
+
+    }
+
+  </ion-list>
+
+  <!-- Modal -->
+
+  <ion-modal [isOpen]="showModal">
+
+    <ng-template>
+
+      <ion-header>
+
+        <ion-toolbar color="primary">
+
+          <ion-title>
+
+            {{ isEditing ? 'Modifier' : 'Ajouter' }}
+
+          </ion-title>
+
+        </ion-toolbar>
+
+      </ion-header>
+
+      <ion-content class="ion-padding">
+
+        <ion-input
+
+          label="Matricule"
+
+          labelPlacement="stacked"
+
+          [(ngModel)]="form.matricule">
+
+        </ion-input>
+
+        <ion-input
+
+          label="Nom"
+
+          labelPlacement="stacked"
+
+          [(ngModel)]="form.nom">
+
+        </ion-input>
+
+        <ion-input
+
+          label="Prénom"
+
+          labelPlacement="stacked"
+
+          [(ngModel)]="form.prenom">
+
+        </ion-input>
+
+        <ion-input
+
+          type="date"
+
+          label="Date de naissance"
+
+          labelPlacement="stacked"
+
+          [(ngModel)]="form.dateNaissance">
+
+        </ion-input>
+
+        <ion-select
+
+          label="Classe"
+
+          labelPlacement="stacked"
+
+          [(ngModel)]="form.classe">
+
+          @for(classe of classes; track classe){
+
+            <ion-select-option [value]="classe">
+
+              {{ classe }}
+
+            </ion-select-option>
+
+          }
+
+        </ion-select>
+
+        <br>
+
+        <ion-button
+
+          expand="block"
+
+          (click)="save()">
+
+          {{ isEditing ? 'Modifier' : 'Ajouter' }}
+
+        </ion-button>
+
+        <ion-button
+
+          expand="block"
+
+          fill="outline"
+
+          color="medium"
+
+          (click)="closeModal()">
+
+          Annuler
+
+        </ion-button>
+
+      </ion-content>
+
+    </ng-template>
+
+  </ion-modal>
+
+</ion-content>

@@ -1,0 +1,45 @@
+.stat-card {
+
+  text-align: center;
+
+  padding: 20px;
+
+}
+
+.stat-card ion-icon {
+
+  font-size: 40px;
+
+  margin-bottom: 10px;
+
+}
+
+.stat-card h2 {
+
+  margin: 10px 0 5px;
+
+  font-size: 28px;
+
+  font-weight: bold;
+
+}
+
+.stat-card p {
+
+  margin: 0;
+
+  color: var(--ion-color-medium);
+
+}
+
+ion-card {
+
+  border-radius: 12px;
+
+}
+
+ion-badge {
+
+  font-size: 12px;
+
+}
